@@ -54,8 +54,7 @@ builds:
     ignore:
       - goos: linux
         goarch: arm
-
-
+        
 archives:
   - replacements:
       darwin: Darwin

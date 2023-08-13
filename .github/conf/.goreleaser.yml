@@ -26,9 +26,15 @@ builds:
       - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{ .CommitDate }} -X main.builtBy=goreleaser
     ignore:
       - goos: windows
+        goarch: arm64
+      - goos: windows
         goarch: arm
       - goos: linux
         goarch: mips64
+      - goos: freebsd
+        goarch: arm
+      - goos: freebsd
+        goarch: arm64
     hooks:
        post: upx --best -f -q "{{ .Path }}"
 
@@ -55,11 +61,13 @@ builds:
       - goos: linux
         goarch: arm
 
+
 archives:
   - replacements:
       darwin: Darwin
       linux: Linux
       windows: Windows
+      freebsd: Freebsd
       386: i386
       amd64: x86_64
 checksum:

@@ -11,7 +11,6 @@ builds:
       - linux
       - windows
       - darwin
-      - freebsd
     goarch:
       - amd64
       - arm64
@@ -31,10 +30,6 @@ builds:
         goarch: arm
       - goos: linux
         goarch: mips64
-      - goos: freebsd
-        goarch: arm
-      - goos: freebsd
-        goarch: arm64
     hooks:
        post: upx --best -f -q "{{ .Path }}"
 
@@ -60,14 +55,15 @@ builds:
     ignore:
       - goos: linux
         goarch: arm
+
+
 archives:
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    freebsd: Freebsd
-    386: i386
-    amd64: x86_64
+  - replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
 checksum:
   name_template: 'checksums.txt'
 snapshot:
